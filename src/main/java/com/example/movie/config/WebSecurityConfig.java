@@ -17,24 +17,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        // @formatter:off
-//        http
-//            .authorizeRequests()
-//                .antMatchers("/", "/movies").permitAll()
-//                .antMatchers("/admins-only").hasRole("ADMIN")
-//                .anyRequest().authenticated()
-//                .and()
-//            .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//            .logout()
-//                .permitAll()
-//                .logoutSuccessUrl("/loggedout");
-//        // @formatter:on
-//    }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http
+            .authorizeRequests()
+                .antMatchers("/", "/movies").permitAll()
+                .antMatchers("/admins-only").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll()
+                .logoutSuccessUrl("/loggedout");
+        // @formatter:on
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
