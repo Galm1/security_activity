@@ -15,7 +15,7 @@ public class WebSecurityConfig {
         // @formatter:off
         http
             .authorizeRequests()
-                .antMatchers("/", "/persons").permitAll()
+                .antMatchers("/", "/movies").permitAll()
                 .antMatchers("/admins-only").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
