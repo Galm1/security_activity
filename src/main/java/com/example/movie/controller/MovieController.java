@@ -75,13 +75,20 @@ public class MovieController {
 
     @RequestMapping("/loggedout")
     String logout(Model model) {
-        List<Movie> persons = movieService.getAll();
-        model.addAttribute("listOPeople", persons);
-        return "view_people";
+        List<Movie> movies = movieService.getAll();
+        model.addAttribute("listOfMovies", movies);
+        return "view_movies";
     }
 
     @GetMapping("/admins-only")
     String admins() {
         return "administration";
+    }
+
+    @ExceptionHandler(value = Exception.class)
+    public String handleDefaultErrors(final Exception exception, Model model) {
+        System.out.println(exception);
+        model.addAttribute("message", exception.getMessage());
+        return "error_message";
     }
 }
